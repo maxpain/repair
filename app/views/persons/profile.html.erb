@@ -1,0 +1,8 @@
+<h1>Ваш профиль</h1>
+
+<% if user_signed_in? %>
+  <span>Ваша почта: <%= current_user.email %></span>
+<% end %>
+<% if current_user.email == 'iljakolesnikoff@yandex.ru' %><br>
+  <%= link_to 'Админка', rails_admin_path, class: 'btn btn-primary' %>
+<% end %>

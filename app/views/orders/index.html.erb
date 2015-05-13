@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Список заказов</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th><%='Номер заказа'%></th>
+      <th><%='Отправитель'%></th>            
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.id %></td>
+        <td><%= order.email %></td>
+        <td><%= link_to 'Открыть', order_path(order), class: 'btn btn-primary' %></td>
+        <td>
+          <%= link_to 'Удалить', order, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>                        
+      </tr>
+    <% end %>
+  </tbody>
+</table>

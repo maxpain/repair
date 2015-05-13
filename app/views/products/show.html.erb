@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Название:</strong>
+  <%= @product.title %>
+</p>
+
+<p>
+  <strong>Описание:</strong>
+  <%= @product.description %>
+</p>
+
+<p>
+  <strong>Изображение:</strong>
+  <%= image_tag @product.image_url.small.url %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @product.price %>
+</p>
+
+  <% if user_signed_in? %>
+    <% if current_user.email == 'iljakolesnikoff@yandex.ru' %>
+      <%= link_to 'Редактировать', edit_product_path(@product) %>
+    <%end%>
+  <%end%>
+<%= link_to 'Назад', products_path %>
