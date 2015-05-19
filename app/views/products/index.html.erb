@@ -1,6 +1,4 @@
-
-
-<h1>Список товаров</h1>
+<h1>Список товаров на складе</h1>
 
 <table class="table table-hover">
   <thead>
@@ -9,11 +7,15 @@
       <th><%= link_to 'Описание', products_path(iluha: :description)%></th>
       <th>Изображение</th>
       <th><%= link_to 'Цена', products_path(iluha: :price)%></th>
+      <th><%= link_to 'Производитель', products_path(iluha: :manufacturer_title_id)%></th>
       <% if user_signed_in? %>
         <th></th>
       <% end %>
-     
-      <th>Количество</th>       
+        <% if user_signed_in? %>
+        <% if current_user.admin? %>
+          <th>Количество</th>
+        <% end %>  
+        <% end %>       
     </tr>
   </thead>
 
@@ -24,9 +26,10 @@
         <td><%= product.description %></td>
         <td><%= image_tag product.image_url.small.url %></td>
         <td><%= product.price %></td>
+        <td><%= link_to product.manufacturer.title, manufacturer_path(product.manufacturer) if product.manufacturer %></td>
 
         <% if user_signed_in? %>
-          <% if current_user.email == 'iljakolesnikoff@yandex.ru' %>
+          <% if current_user.admin? %>
             <td><%= link_to 'Редактировать', edit_product_path(product), class: 'btn btn-primary' %><br>
             <br>
               <%= link_to 'Удалить', product, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
@@ -49,9 +52,11 @@
   </tbody>
 </table>
 
+<%= paginate @products %>
+
 <br>
 <% if user_signed_in? %>
-  <% if current_user.email == 'iljakolesnikoff@yandex.ru' %>
+  <% if current_user.admin? %>
     <%= link_to 'Добавить продукт', new_product_path, class: 'btn btn-primary' %>
   <% end %>
 <% end %>

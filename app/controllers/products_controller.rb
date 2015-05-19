@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index    
-      @products = Product.order(params[:iluha])   
+      @products = Product.order(params[:iluha]).page(params[:page]).per(3)
   end 
   # @products = Product.where("price >= ?",params[:product]).order(price)
   # @products = Product.all
@@ -72,6 +72,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:title, :description, :image_url, :price)
+      params.require(:product).permit(:title, :description, :image_url, :price, :manufacturer_id)
     end
 end

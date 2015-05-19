@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  resources :tidings
+  resources :manufacturers
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   devise_for :users
   get 'persons/profile'
 
@@ -17,7 +20,10 @@ Rails.application.routes.draw do
   end
 
   resources :orders do
-    patch :send_to_user, on: :member
+    member do
+      patch :send_to_user
+      get :user_complete
+    end
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

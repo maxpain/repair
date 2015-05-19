@@ -1,11 +1,25 @@
 class OrdersController < ApplicationController
 
   def index
-    @orders = Order.where(send_user_id: current_user.id)
+    if current_user.try(:admin?)      
+      @orders = Order.all
+    else
+      @orders = Order.where(send_user_id: current_user.try(:id))    
+    end
   end
 
   def show
     @order = Order.find(params[:id])
+  end
+
+  def user_complete
+    @order = Order.find(params[:id])
+    if @order.complete!    
+      flash[:notice] = 'Подтверждено'
+    else
+      flash[:alert] = 'Не удалось подтвердить'
+    end
+    redirect_to orders_path
   end
 
   def send_to_user

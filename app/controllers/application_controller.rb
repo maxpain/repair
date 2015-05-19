@@ -19,9 +19,9 @@ class ApplicationController < ActionController::Base
 
     def check_current_order
       if session[:current_order]
-        @order ||= Order.find(session[:current_order])
+        @order ||= ::Order.find(session[:current_order])
       else
-        @order = Order.create(user_id: current_user.try(:id))
+        @order = ::Order.create(user_id: current_user.try(:id))
         session[:current_order] = @order.id
       end
     end

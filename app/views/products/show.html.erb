@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<p id="notice">
 
 <p>
   <strong>Название:</strong>
@@ -16,12 +16,18 @@
 </p>
 
 <p>
-  <strong>Price:</strong>
+  <strong>Производитель:</strong>
+  <%= @product.manufacturer_id %>
+</p>
+
+<p>
+  <strong>Цена:</strong>
   <%= @product.price %>
 </p>
 
+
   <% if user_signed_in? %>
-    <% if current_user.email == 'iljakolesnikoff@yandex.ru' %>
+    <% if current_user.admin? %>
       <%= link_to 'Редактировать', edit_product_path(@product) %>
     <%end%>
   <%end%>
