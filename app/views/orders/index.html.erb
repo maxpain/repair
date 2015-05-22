@@ -18,8 +18,13 @@
         <td><%= order.email %></td>
         <td><% if order.completed? %>
             Подтверждено
-           <% else %>
+            <% end %>
+           <% if order.sended? %>
             Не подтверждено
+            <% end %>
+            <% if order.performed? %>
+            Выполняется
+            
           <% end %></td>
         <td><%= link_to 'Открыть', order_path(order), class: 'btn btn-primary' %></td>
         <td>
@@ -28,3 +33,5 @@
     <% end %>
   </tbody>
 </table>
+
+<%= link_to 'На главную', welcome_index_path, class: 'btn btn-primary' %>

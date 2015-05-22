@@ -1,23 +1,23 @@
 <p id="notice">
 
-<p>
-  <strong>Название:</strong>
-  <%= @product.title %>
+<p>  
+  <h1><%= @product.tiping.title %></h1>
+  <h1><%= @product.title %></h1>
 </p>
 
-<p>
-  <strong>Описание:</strong>
-  <%= @product.description %>
-</p>
+<div class="col-xs-8">
+  <p>
+    <%= @product.description %>
+  </p>
+</div>
 
 <p>
-  <strong>Изображение:</strong>
   <%= image_tag @product.image_url.small.url %>
 </p>
 
 <p>
   <strong>Производитель:</strong>
-  <%= @product.manufacturer_id %>
+  <%= @product.manufacturer.title %>
 </p>
 
 <p>

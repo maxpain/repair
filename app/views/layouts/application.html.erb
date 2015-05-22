@@ -20,11 +20,14 @@
       <div class="navbar-collapse collapse navbar-responsive-collapse">
         <ul class="nav navbar-nav">
           <li><%= link_to "Главная", welcome_index_path  %></li>
-          <li><%= link_to "Запчасти", products_path  %></li>
+          <li><%= link_to "Комплектующие", products_path  %></li>
           <% if user_signed_in? %>
           <li><%= link_to "Заказы", orders_path  %></li>
+          <% if current_user.admin? %>
+          <li><%= link_to "Виды комплектующих", tipings_path  %></li>
           <li><%= link_to "Производители", manufacturers_path  %></li>
-          <% end %>         
+          <% end %>
+          <% end %>          
           <li><%= link_to "О нас", about_index_path  %></li>
         </ul>
         <p class="navbar-text navbar-right">
@@ -49,7 +52,7 @@
         <% if current_user.admin? %>
           <div class="col-lg-3">
             <div class="well sidebar-nav">
-              <h3>Cart</h3>
+              <h3>Корзина</h3>
               <%= render 'shared/cart' %>
             </div>
           </div>

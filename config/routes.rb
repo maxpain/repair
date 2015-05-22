@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :tipings
   resources :tidings
   resources :manufacturers
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
     member do
       patch :send_to_user
       get :user_complete
+      get :admin_perform
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.

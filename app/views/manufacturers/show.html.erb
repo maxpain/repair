@@ -1,8 +1,7 @@
 <p id="notice">
 
 <p>
-  <strong>Наименование:</strong>
-  <%= @manufacturer.title %>
+  <h2><%= @manufacturer.title %></h2>
 </p>
 
 <p>
@@ -20,5 +19,9 @@
   <%= @manufacturer.city %>
 </p>
 
-<%= link_to 'Редактировать', edit_manufacturer_path(@manufacturer) %> |
-<%= link_to 'Назад', manufacturers_path %>
+  <% if user_signed_in? %>
+    <% if current_user.admin? %>
+      <%= link_to 'Редактировать', edit_manufacturer_path(@manufacturer) %>
+    <%end%>
+  <%end%>
+  <%= link_to 'Назад', products_path %>

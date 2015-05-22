@@ -12,17 +12,17 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
+    <strong>Наименование</strong>
+    <%= f.text_field :title, class: "form-control", placeholder: "Введите наименование"%>
+  </div><br>
   <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
+    <strong>Описание</strong>
+    <%= f.text_area :description, class: "form-control", rows: "3", placeholder: "Введите описание" %>
+  </div><br>
   <div class="field">
-    <%= f.label :image_url %><br>
-    <%= f.file_field :image_url %>
-  </div>
+    <strong>Изображение</strong>
+    <%= f.file_field :image_url, class: "form-control" %>
+  </div><br>
   <div class="actions">
     <%= f.submit %>
   </div>

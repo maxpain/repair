@@ -4,9 +4,14 @@
     <li class='list-group-item'>
       <span class='badge'><%= line_item.count %></span>
       <%= line_item.product.title %>
+      Цена:
+      <%= line_item.total_price %>   
     </li>
   <% end %>
+  Итого:
+  <%=current_order.calculate_total_price%>
   <br/>
+
 
   <p>
   <strong>Заполните форму отправки пакета необходимых запчастей</strong>
@@ -16,7 +21,9 @@
         <%= f.label "ФИО отправителя" %>
         <%= f.text_field :fio, class: 'form-control' %><br>
         <%= f.label "Номер телефона отправителя" %>
-        <%= f.text_field :phone_number, class: 'form-control' %><br>              
+        <%= f.text_field :phone_number, class: 'form-control' %><br>
+        <%= f.label "Сообщение" %>
+        <%= f.text_field :message, class: 'form-control' %><br>             
         <%= f.label "Почта получателя" %><br>
         <%= f.select(:send_user_id, options_from_collection_for_select(User.all, :id, :email)) %><br>
         <br>

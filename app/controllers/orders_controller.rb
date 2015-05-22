@@ -22,6 +22,17 @@ class OrdersController < ApplicationController
     redirect_to orders_path
   end
 
+  def admin_perform
+    @order = Order.find(params[:id])
+    if @order.perform!    
+      flash[:notice] = 'Заказ выполняется'
+    else
+      flash[:alert] = 'Не удалось подтвердить начало выполнения'
+    end
+    redirect_to orders_path
+  end
+  
+
   def send_to_user
     @order = current_order
     if @order.send!(send_to_user_params)
@@ -46,7 +57,7 @@ class OrdersController < ApplicationController
   private
 
     def send_to_user_params
-      params.require(:order).permit(:send_user_id, :email, :fio, :phone_number)
+      params.require(:order).permit(:send_user_id, :email, :fio, :phone_number, :total_price, :message)
     end
 
 end
